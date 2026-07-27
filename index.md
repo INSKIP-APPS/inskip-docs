@@ -1,9 +1,11 @@
 # INSKIP — Documentation technique
 
-Cette documentation décrit les pratiques appliquées par INSKIP à l'ensemble
-des applications qu'il développe et opère pour ses clients. Ces pratiques sont
-en vigueur depuis juillet 2026 ; la documentation est tenue à jour au fil de
-leur évolution, et l'historique complet des modifications est conservé.
+INSKIP accompagne des organisations en innovation depuis 2017. Cette
+documentation constitue le référentiel technique appliqué à l'ensemble des
+applications que nous développons et opérons pour nos clients : procédures de
+développement, sécurité, disponibilité. Elle est tenue à jour au fil de
+l'évolution de nos pratiques, et l'historique complet des modifications est
+conservé.
 
 | Document | Contenu |
 |---|---|

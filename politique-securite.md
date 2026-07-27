@@ -1,7 +1,7 @@
 # Politique de sécurité
 
 **INSKIP** — s'applique à l'ensemble des applications développées et opérées par INSKIP.
-*Pratiques en vigueur depuis juillet 2026 · dernière mise à jour : juillet 2026*
+*Dernière mise à jour : juillet 2026*
 
 ## 1. Principes
 
