@@ -59,6 +59,9 @@ l'intégration** — aucune modification ne peut atteindre la production sans
   données de production ne sont jamais utilisées en pré-production.
 - Les variables d'environnement (dont les secrets) sont strictement séparées
   entre environnements et ne figurent jamais dans le code source.
+- **Toute application est servie en HTTPS**, avec un certificat TLS provisionné
+  et renouvelé automatiquement par l'hébergeur — production comme
+  pré-production.
 - Les déploiements sont atomiques et réversibles : un retour à la version
   précédente s'effectue en quelques minutes.
 

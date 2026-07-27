@@ -89,20 +89,39 @@ Les rapports d'audit eux-mêmes (SOC 2, certificat ISO 27001) sont délivrés pa
 ces fournisseurs, selon les conditions d'accès qu'ils définissent ; nous
 relayons toute demande client en ce sens.
 
-## 4. Contrôle des accès
+## 4. Chiffrement des échanges et certificats
+
+**Toutes nos applications sont exclusivement servies en HTTPS.** Chaque site
+public dispose d'un **certificat TLS** valide, provisionné et **renouvelé
+automatiquement** par l'hébergeur — il n'y a donc pas de risque d'expiration
+par oubli humain. Les certificats sont émis par des autorités publiquement
+reconnues (Google Trust Services, Let's Encrypt selon la plateforme).
+
+- **HTTPS est forcé** : toute requête en HTTP est redirigée vers HTTPS ; aucune
+  donnée ne circule en clair.
+- Le chiffrement s'applique de bout en bout : navigateur → application (TLS),
+  puis application → base de données (TLS), et les données sont chiffrées au
+  repos en AES-256 (voir §3).
+- Les certificats couvrent également les environnements de pré-production.
+
+## 5. Contrôle des accès
 
 - Les dépôts de code sont **privés**, hébergés sur l'organisation GitHub
   d'INSKIP — jamais sur un compte individuel. L'accès est nominatif et limité
   aux intervenants du projet (moindre privilège).
 - Les accès aux consoles d'administration (Vercel, Supabase, GitHub) sont
-  restreints à l'équipe INSKIP habilitée, avec authentification à deux
-  facteurs.
+  restreints aux membres habilités de l'équipe INSKIP, chaque accès étant
+  nominatif — aucun compte partagé, ce qui garantit l'imputabilité des actions.
+- **Authentification à deux facteurs** : son activation est requise par notre
+  politique interne sur l'ensemble des comptes d'administration ; sa
+  généralisation et son application obligatoire au niveau de l'organisation
+  sont en cours de déploiement.
 - Côté applicatif, le contrôle d'accès aux données repose sur
   l'authentification de la plateforme et des **politiques de sécurité au niveau
   des lignes** (Row Level Security), définies par application et versionnées
   avec le code.
 
-## 5. Gestion des secrets
+## 6. Gestion des secrets
 
 - Aucun secret (clé d'API, identifiant, jeton) n'est stocké dans le code
   source : les secrets résident dans les variables d'environnement des
@@ -112,7 +131,7 @@ relayons toute demande client en ce sens.
 - En cas d'exposition suspectée : révocation et rotation immédiates, puis
   analyse d'impact.
 
-## 6. Isolation des environnements et des données
+## 7. Isolation des environnements et des données
 
 - La pré-production dispose de sa **propre base de données**, distincte de
   celle de production : l'isolation est assurée au niveau de l'infrastructure,
@@ -120,7 +139,7 @@ relayons toute demande client en ce sens.
 - Les données réelles ne sont jamais copiées en pré-production ; les tests
   automatisés et jeux d'exemple utilisent des données fictives.
 
-## 7. Développement sécurisé
+## 8. Développement sécurisé
 
 - Toute modification passe par une revue de code (pull request) et une chaîne
   d'intégration continue **bloquante** : tests automatisés et compilation
@@ -133,7 +152,7 @@ relayons toute demande client en ce sens.
   configuration d'entreprise centralisée qui interdit toute action externe non
   validée et toute transmission de données clients hors du cadre défini.
 
-## 8. Supervision et gestion des incidents
+## 9. Supervision et gestion des incidents
 
 - Chaque application en production est supervisée automatiquement (sonde toutes
   les 15 minutes) ; toute anomalie déclenche une alerte horodatée à l'équipe,
@@ -145,14 +164,14 @@ relayons toute demande client en ce sens.
   la notification à l'autorité compétente sous 72 heures au titre du RGPD —
   sont respectées.
 
-## 9. Sauvegardes
+## 10. Sauvegardes
 
 Sauvegardes automatiques quotidiennes des bases de données par l'hébergeur,
 avec 7 jours de rétention sur la configuration actuelle de nos projets. La
 restauration à un instant précis est disponible en option et souscrite par
 projet lorsque le besoin le justifie.
 
-## 10. Données personnelles
+## 11. Données personnelles
 
 INSKIP applique les principes du RGPD : minimisation des données collectées,
 finalités définies par application, sous-traitants encadrés par leurs accords
@@ -160,12 +179,12 @@ de traitement (DPA) et, pour les transferts hors Union européenne, par les
 clauses contractuelles types. Les demandes d'exercice de droits sont traitées
 via le contact ci-dessous.
 
-## 11. Signalement d'une vulnérabilité
+## 12. Signalement d'une vulnérabilité
 
 Toute vulnérabilité ou préoccupation de sécurité peut être signalée à
 **matthieu.chereau@inskip.fr**. Nous accusons réception sous 2 jours ouvrés.
 
-## 12. Révision
+## 13. Révision
 
 Cette politique est revue à chaque évolution significative de nos pratiques et
 au minimum une fois par an. Chaque mise à jour est datée et son historique
