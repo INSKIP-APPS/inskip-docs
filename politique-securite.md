@@ -1,6 +1,6 @@
 # Politique de sécurité
 
-**INSKIP** · Version 2.0 · 27 juillet 2026
+**INSKIP** · Version 2.1 · 27 juillet 2026
 S'applique à l'ensemble des applications développées et opérées par INSKIP.
 
 ## 1. Principes
@@ -18,16 +18,39 @@ rendre chaque modification traçable et relue.
 | **Vercel** | Hébergement applicatif, distribution par CDN | Application servie, journaux techniques, mises en cache temporaires |
 | **GitHub** | Code source, intégration continue, supervision | Code applicatif (aucune donnée client dans les dépôts) |
 
-**Localisation des données.** Les données persistantes de nos applications sont
-hébergées dans la **région Paris (France)** de notre hébergeur de bases de
-données. Quelques projets antérieurs à cette règle sont hébergés dans une autre
-région de l'Union européenne (Irlande). La région applicable à votre
-application vous est précisée sur demande et peut être confirmée
-contractuellement.
+### Localisation des données — le détail
 
-Vercel assure la diffusion de l'application via son réseau : il peut mettre en
-cache temporairement des réponses dans ses points de présence, mais **le
-stockage durable des données reste dans la base hébergée en France**.
+**Base de données (données persistantes, données personnelles).** Hébergée dans
+la **région Paris, France** (`eu-west-3`) pour nos applications. Quelques
+projets antérieurs à cette règle sont hébergés dans une autre région de l'Union
+européenne (Irlande). La région applicable à votre application vous est
+précisée sur demande et peut être confirmée contractuellement.
+
+**Hébergement applicatif (Vercel).** Vercel est une société de droit américain
+dont l'infrastructure s'appuie sur AWS. Son réseau comprend plus de 120 points
+de présence répartis dans le monde, et une vingtaine de régions de calcul, dont
+**Paris (`cdg1`)**. Ce que cela implique concrètement pour nos applications :
+
+- **La majorité de nos applications sont des applications web statiques** :
+  Vercel n'y distribue que les fichiers de l'interface (HTML, JavaScript,
+  styles), qui ne contiennent aucune donnée personnelle. Ces fichiers sont mis
+  en cache dans les points de présence mondiaux pour la performance. **Les
+  données, elles, circulent directement entre le navigateur de l'utilisateur et
+  la base hébergée en France** — elles ne transitent ni ne séjournent dans les
+  serveurs de calcul de Vercel.
+- **Pour les rares applications comportant du code exécuté côté serveur**
+  (fonctions), la région d'exécution est un paramètre explicite. Notre règle
+  est de la fixer sur **Paris (`cdg1`)**, au plus près de la base de données.
+  À défaut de configuration, Vercel exécute par défaut en Virginie
+  (États-Unis) : nous vérifions ce point application par application et le
+  corrigeons le cas échéant. La configuration effective de votre application
+  vous est communiquée sur demande.
+- Le chiffrement TLS est terminé dans la région Vercel qui traite la requête.
+
+**Transferts hors Union européenne.** Vercel étant un fournisseur américain,
+les transferts éventuels (notamment métadonnées techniques et journaux) sont
+encadrés par sa certification **Data Privacy Framework UE–États-Unis** et par
+les clauses contractuelles types. Pour Supabase, voir le tableau ci-dessous.
 
 ## 3. Certifications et conformité de nos hébergeurs
 
@@ -53,11 +76,13 @@ document.
 |---|---|
 | ISO 27001 | Certifié |
 | SOC 2 Type 2 | Attestation disponible auprès du fournisseur |
-| PCI DSS v4.0 | Attestation de conformité |
-| Data Privacy Framework (EU-US) | Certifié, inscription publique |
-| TISAX (niveau 2) | Évaluation obtenue (secteur automobile) |
+| PCI DSS v4.0 | Attestation de conformité (prestataire et commerçant) |
+| Data Privacy Framework UE–États-Unis | Certifié, inscription publique consultable |
+| TISAX (niveau 2) | Évaluation obtenue (exigences du secteur automobile) |
 | HIPAA | Disponible pour les offres Enterprise du fournisseur |
+| RGPD | Sous-traitant, accord de traitement des données (DPA) disponible |
 | Chiffrement | **AES-256 au repos**, HTTPS/TLS en transit |
+| Régions de calcul | 20 régions dont **Paris (`cdg1`)** ; plus de 120 points de présence pour la diffusion |
 
 Ces informations proviennent des publications de sécurité de nos fournisseurs.
 Les rapports d'audit eux-mêmes (SOC 2, certificat ISO 27001) sont délivrés par
