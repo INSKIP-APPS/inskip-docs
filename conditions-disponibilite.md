@@ -1,15 +1,29 @@
 # Disponibilité et supervision des applications
 
-**INSKIP** · Version 2.1 · 27 juillet 2026
+**INSKIP** · Version 3.0 · 27 juillet 2026
 
-> **Nature de ce document.** Il décrit **comment** la disponibilité de nos
-> applications est supervisée et mesurée, et ce que nous communiquons à ce
-> sujet. Il ne constitue **pas un engagement de niveau de service (SLA)** :
-> aucun taux de disponibilité garanti, aucune pénalité ni compensation n'en
-> découle. Tout engagement de cette nature relève exclusivement du contrat
-> propre à chaque projet, qui prévaut alors sur le présent document.
+> **Nature de ce document.** Il énonce notre **engagement de disponibilité**,
+> décrit **comment** celle-ci est mesurée, et ce que nous communiquons à ce
+> sujet. Les modalités de compensation éventuelle relèvent du contrat propre à
+> chaque projet, qui prévaut alors sur le présent document.
 
-## 1. Architecture et dépendances
+## 1. Notre engagement
+
+**INSKIP s'engage sur une disponibilité de 99,5 % par mois calendaire** pour
+les applications qu'il opère, hors maintenances planifiées et hors facteurs
+listés au §7.
+
+Concrètement, ce seuil tolère environ **3 h 40 d'indisponibilité par mois**.
+Cet engagement est mesuré par le dispositif décrit au §3, dont les relevés
+mensuels sont conservés et communicables — nous ne demandons pas qu'on nous
+croie sur parole.
+
+En cas de mois passant sous ce seuil : analyse a posteriori documentée et
+transmise au client, avec le plan d'action correctif. Les éventuelles
+modalités de compensation financière sont définies contractuellement, projet
+par projet.
+
+## 2. Architecture et dépendances
 
 Les applications INSKIP reposent sur des infrastructures managées et
 redondantes — **Vercel** (hébergement applicatif, distribution par CDN) et
@@ -17,11 +31,12 @@ redondantes — **Vercel** (hébergement applicatif, distribution par CDN) et
 serveur : la disponibilité du service dépend donc directement de celle de ces
 fournisseurs, qui publient leurs propres engagements et états de service.
 
-Il en résulte que la disponibilité effective d'une application n'est pas
-entièrement sous notre maîtrise. Nous nous engageons en revanche sur la
-**transparence de sa mesure** (§2) et sur notre **réactivité** (§4).
+Notre engagement du §1 s'appuie sur la robustesse de ces plateformes, dont les
+niveaux de service propres sont supérieurs au seuil que nous retenons. Il
+s'accompagne de deux garanties complémentaires : la **transparence de la
+mesure** (§3) et notre **réactivité** en cas d'incident (§5).
 
-## 2. Comment la disponibilité est mesurée
+## 3. Comment la disponibilité est mesurée
 
 Chaque application en production est supervisée par un dispositif automatisé,
 intégré à son dépôt de code :
@@ -53,11 +68,11 @@ mesure n'a pas :
 - Le dispositif s'appuie sur l'infrastructure d'automatisation de GitHub :
   une indisponibilité de celle-ci peut décaler une mesure.
 
-## 3. Communication de la disponibilité, et portée de cette transparence
+## 4. Communication de la disponibilité, et portée de cette transparence
 
 Sur demande, nous transmettons pour une application donnée : le relevé mensuel
 de disponibilité, la liste horodatée des incidents de la période et leur durée.
-Ces éléments sont extraits du journal décrit au §2 — ils ne sont pas
+Ces éléments sont extraits du journal décrit au §3 — ils ne sont pas
 reconstitués a posteriori.
 
 **Ce que cette transparence garantit — et ce qu'elle ne garantit pas.** Les
@@ -80,7 +95,7 @@ disponibles et se décident au démarrage :
    confiance ; elle implique un service supplémentaire, dont le coût est chiffré
    avec le projet.
 
-## 4. Maintenances, incidents et support
+## 5. Maintenances, incidents et support
 
 - **Déploiements sans interruption** : chaque mise à jour est construite puis
   substituée à la version précédente ; un retour arrière est possible en
@@ -96,7 +111,7 @@ disponibles et se décident au démarrage :
   peuvent être définis contractuellement, projet par projet.
 - **Canal** : contact projet, à défaut matthieu.chereau@inskip.fr.
 
-## 5. Sauvegardes et reprise
+## 6. Sauvegardes et reprise
 
 - Sauvegardes automatiques **quotidiennes** de la base de données par
   l'hébergeur, avec **7 jours de rétention** sur la configuration actuelle de
@@ -106,7 +121,7 @@ disponibles et se décident au démarrage :
   disponible en option chez l'hébergeur ; elle n'est pas activée par défaut et
   peut être souscrite par projet lorsque le besoin le justifie.
 
-## 6. Facteurs hors de notre maîtrise
+## 7. Facteurs hors de notre maîtrise
 
 Ne relèvent pas de notre responsabilité : les indisponibilités des
 fournisseurs d'infrastructure (Vercel, Supabase) et de leurs propres
@@ -114,7 +129,7 @@ sous-jacents, celles des systèmes tiers intégrés à la demande du client, les
 cas de force majeure, ainsi que les usages anormaux ou malveillants
 (attaques par déni de service notamment).
 
-## 7. Révision
+## 8. Révision
 
 Ce document est versionné et daté ; toute évolution est publiée au même
 emplacement, l'historique restant consultable.
