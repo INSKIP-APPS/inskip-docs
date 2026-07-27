@@ -1,7 +1,7 @@
 # Guide des procédures de développement et outils utilisés
 
-**INSKIP** · Version 1.1 · 27 juillet 2026
-S'applique à l'ensemble des applications développées et opérées par INSKIP.
+**INSKIP** — s'applique à l'ensemble des applications développées et opérées par INSKIP.
+*Pratiques en vigueur depuis juillet 2026 · dernière mise à jour : juillet 2026*
 
 ## 1. Objet
 
@@ -88,5 +88,5 @@ quand, et après quelle revue.
 
 ## 10. Évolution du présent guide
 
-Ce guide évolue avec nos pratiques. Toute modification est versionnée, datée
-et relue avant publication. Contact : matthieu.chereau@inskip.fr.
+Ce guide évolue avec nos pratiques. Toute modification est datée et relue avant
+publication. Contact : matthieu.chereau@inskip.fr.

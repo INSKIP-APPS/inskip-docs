@@ -1,6 +1,7 @@
 # Disponibilité et supervision des applications
 
-**INSKIP** · Version 3.0 · 27 juillet 2026
+**INSKIP** — s'applique par défaut aux applications opérées par INSKIP.
+*Dispositif en vigueur depuis juillet 2026 · dernière mise à jour : juillet 2026*
 
 > **Nature de ce document.** Il énonce notre **engagement de disponibilité**,
 > décrit **comment** celle-ci est mesurée, et ce que nous communiquons à ce
@@ -131,5 +132,5 @@ cas de force majeure, ainsi que les usages anormaux ou malveillants
 
 ## 8. Révision
 
-Ce document est versionné et daté ; toute évolution est publiée au même
-emplacement, l'historique restant consultable.
+Ce document est mis à jour au fil de l'évolution de nos pratiques ; chaque mise
+à jour est publiée au même emplacement, l'historique restant consultable.
