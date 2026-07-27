@@ -1,6 +1,6 @@
 # Disponibilité et supervision des applications
 
-**INSKIP** · Version 2.0 · 27 juillet 2026
+**INSKIP** · Version 2.1 · 27 juillet 2026
 
 > **Nature de ce document.** Il décrit **comment** la disponibilité de nos
 > applications est supervisée et mesurée, et ce que nous communiquons à ce
@@ -30,8 +30,8 @@ intégré à son dépôt de code :
   est appelée ; toute réponse anormale est traitée comme une indisponibilité.
 - **Journal d'incidents horodaté** : une indisponibilité ouvre automatiquement
   une alerte datée, refermée automatiquement au retour à la normale avec la
-  durée constatée. Ces horodatages sont produits et conservés par la
-  plateforme (GitHub), sans intervention manuelle possible.
+  durée constatée. Ces horodatages sont générés par la plateforme
+  d'automatisation (GitHub) et ne peuvent pas être modifiés par édition.
 - **Rapport mensuel automatique** : le 1er de chaque mois, la disponibilité du
   mois écoulé est calculée à partir de ce journal (nombre d'incidents, durée
   cumulée, taux de disponibilité) et **versionnée dans le dépôt de
@@ -53,12 +53,32 @@ mesure n'a pas :
 - Le dispositif s'appuie sur l'infrastructure d'automatisation de GitHub :
   une indisponibilité de celle-ci peut décaler une mesure.
 
-## 3. Communication de la disponibilité
+## 3. Communication de la disponibilité, et portée de cette transparence
 
 Sur demande, nous transmettons pour une application donnée : le relevé mensuel
 de disponibilité, la liste horodatée des incidents de la période et leur durée.
 Ces éléments sont extraits du journal décrit au §2 — ils ne sont pas
 reconstitués a posteriori.
+
+**Ce que cette transparence garantit — et ce qu'elle ne garantit pas.** Les
+mesures sont produites automatiquement, horodatées par la plateforme et
+conservées dans le dépôt de l'application, dont l'historique est versionné :
+toute divergence entre le relevé transmis et le journal source serait
+détectable par un audit ayant accès au dépôt. En revanche, ces données étant
+hébergées dans nos dépôts privés, **elles ne sont pas vérifiables de façon
+indépendante par un tiers** : la mesure est produite par nos propres outils.
+
+Lorsqu'un projet requiert une garantie plus forte, deux options sont
+disponibles et se décident au démarrage :
+
+1. **Accès en lecture au journal de supervision** de l'application accordé au
+   client ou à son auditeur : il consulte alors directement la source, sans
+   passer par nos relevés.
+2. **Supervision par un tiers indépendant** (service de monitoring externe avec
+   page de statut publique) : la mesure n'est plus produite par nous. C'est la
+   seule configuration qui rend la disponibilité vérifiable sans nous faire
+   confiance ; elle implique un service supplémentaire, dont le coût est chiffré
+   avec le projet.
 
 ## 4. Maintenances, incidents et support
 
