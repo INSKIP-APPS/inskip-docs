@@ -121,6 +121,24 @@ reconnues (Google Trust Services, Let's Encrypt selon la plateforme).
   des lignes** (Row Level Security), définies par application et versionnées
   avec le code.
 
+### Authentification multifacteur des back-offices
+
+**L'accès aux back-offices d'administration de nos applications est protégé par
+une authentification multifacteur (MFA).** Concrètement :
+
+- un compte disposant de privilèges d'administration ne peut pas accéder à
+  l'interface d'administration avec un simple mot de passe : un second facteur
+  est exigé à l'authentification ;
+- le second facteur repose sur un code à usage unique généré par application
+  d'authentification (TOTP, standard RFC 6238) — sans dépendance à un service
+  tiers ni au réseau téléphonique ;
+- cette exigence fait partie du référentiel technique appliqué à nos
+  applications : elle est vérifiée avant mise en service, et contrôlée lors de
+  nos audits internes périodiques.
+
+Les comptes utilisateurs non privilégiés relèvent de la politique
+d'authentification définie avec le client pour chaque application.
+
 ## 6. Gestion des secrets
 
 - Aucun secret (clé d'API, identifiant, jeton) n'est stocké dans le code
