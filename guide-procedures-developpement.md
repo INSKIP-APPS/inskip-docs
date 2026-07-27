@@ -1,6 +1,6 @@
 # Guide des procédures de développement et outils utilisés
 
-**INSKIP** · Version 1.0 · 27 juillet 2026
+**INSKIP** · Version 1.1 · 27 juillet 2026
 S'applique à l'ensemble des applications développées et opérées par INSKIP.
 
 ## 1. Objet
@@ -15,7 +15,7 @@ version publiée fait foi, son historique de modifications est traçable.
 |---|---|---|
 | Gestion du code source | GitHub (organisation dédiée INSKIP) | Dépôts privés, revue de code, traçabilité complète des modifications |
 | Framework applicatif | React + TypeScript (Vite) | Applications web ; le typage statique est vérifié à chaque build |
-| Base de données et authentification | Supabase (PostgreSQL managé) | Données, comptes utilisateurs, contrôle d'accès au niveau des lignes (RLS) |
+| Base de données et authentification | Supabase (PostgreSQL managé, région Paris — France) | Données, comptes utilisateurs, contrôle d'accès au niveau des lignes (RLS) |
 | Hébergement et déploiement | Vercel | Déploiement continu, CDN, environnements séparés |
 | Tests | Vitest, Testing Library, Playwright | Voir §4 |
 | Intégration continue | GitHub Actions | Voir §5 |
@@ -71,13 +71,22 @@ externes non validées, et des règles de confidentialité sur les données
 clients. Le code produit avec assistance IA suit exactement les mêmes
 contrôles (tests, CI, revue) que le reste.
 
-## 8. Documentation et traçabilité
+## 8. Supervision en production
+
+Chaque application déployée embarque, dans son propre dépôt, un dispositif de
+supervision automatisé : sonde de disponibilité toutes les 15 minutes, journal
+d'incidents horodaté, et rapport mensuel de disponibilité versionné. Ce
+dispositif fait partie du standard technique appliqué à toutes nos
+applications — il n'est pas ajouté au cas par cas. Détail dans le document
+*Disponibilité et supervision*.
+
+## 9. Documentation et traçabilité
 
 Les décisions d'architecture et les standards sont documentés et versionnés.
 L'historique Git constitue la piste d'audit complète : qui a modifié quoi,
 quand, et après quelle revue.
 
-## 9. Évolution du présent guide
+## 10. Évolution du présent guide
 
 Ce guide évolue avec nos pratiques. Toute modification est versionnée, datée
 et relue avant publication. Contact : matthieu.chereau@inskip.fr.
